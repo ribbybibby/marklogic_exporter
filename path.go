@@ -1,12 +1,13 @@
 package main
 
 type Path struct {
-	resource 	string
-	name 		string
-	group 		string
+	view     string
+	resource string
+	name     string
+	group    string
 }
 
-func (p *Path) URI(uri string) (string) {
+func (p *Path) URI(uri string) string {
 	path := "/manage/v2"
 	if p.resource != "" {
 		path = path + "/" + p.resource
@@ -14,7 +15,10 @@ func (p *Path) URI(uri string) (string) {
 	if p.name != "" {
 		path = path + "/" + p.name
 	}
-	path = path + "?view=status&format=json"
+	path = path + "?format=json"
+	if p.view != "" {
+		path = path + "&view=" + p.view
+	}
 	if p.group != "" {
 		path = path + "&group-id=" + p.group
 	}

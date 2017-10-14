@@ -43,13 +43,13 @@ func main() {
 	log.Infoln("Build context", version.BuildContext())
 
 	prometheus.MustRegister(&Exporter{
-		status: &status,
-		collectors: map[string]bool{
-			"forests":      true,
-			"hosts":        true,
-			"servers":      true,
-			"requests":     true,
-			"transactions": true,
+		Status: &status,
+		Collectors: map[string]bool{
+			"forests":   true,
+			"servers":   true,
+			"databases": true,
+			//"hosts":   true,
+
 		},
 	})
 
